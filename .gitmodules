@@ -1,0 +1,6 @@
+[submodule "pelican/pelican-plugins"]
+	path = pelican/pelican-plugins
+	url = git@github.com:getpelican/pelican-plugins.git
+[submodule "pelican/Flex"]
+	path = pelican/Flex
+	url = git@github.com:alexandrevicenzi/Flex.git
