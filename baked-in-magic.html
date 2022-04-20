@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+
+    <link rel="stylesheet" type="text/css" href="https://introt.github.io/bleg/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://introt.github.io/bleg/theme/pygments/github.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://introt.github.io/bleg/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://introt.github.io/bleg/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://introt.github.io/bleg/theme/font-awesome/css/solid.css">
+
+
+    <link href="https://introt.github.io/bleg/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="introt bleg Atom">
+
+    <link href="https://introt.github.io/bleg/feeds/all.rss" type="application/rss+xml" rel="alternate" title="introt bleg RSS">
+
+    <link rel="shortcut icon" href="https://introt.github.io/bleg/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://introt.github.io/bleg/images/favicon.ico" type="image/x-icon">
+
+  
+
+
+ 
+
+<meta name="author" content="introt" />
+<meta name="description" content="Happy Weed Day! While waiting for Druaga1&#39;s yearly celebratory video, I thought it&#39;d be a good time to finally get my blog (high) off the ground, and get into the weeds with Alabester1. After bashing together a GitHub Actions pipeline2 for the documentation site, I rediscovered the …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="introt bleg"/>
+  <meta property="og:title" content="Baked (in) Magic"/>
+  <meta property="og:description" content="Happy Weed Day! While waiting for Druaga1&#39;s yearly celebratory video, I thought it&#39;d be a good time to finally get my blog (high) off the ground, and get into the weeds with Alabester1. After bashing together a GitHub Actions pipeline2 for the documentation site, I rediscovered the …"/>
+  <meta property="og:locale" content="('en_US', 'en_US.utf8')"/>
+  <meta property="og:url" content="https://introt.github.io/bleg/baked-in-magic.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-04-20 04:20:00+03:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://introt.github.io/bleg/author/introt.html">
+  <meta property="article:section" content="content"/>
+  <meta property="og:image" content="https://introt.github.io/bleg/images/profile.png">
+
+  <title>introt bleg &ndash; Baked (in) Magic</title>
+
+</head>
+<body class="light-theme">
+  <aside>
+    <div>
+      <a href="https://introt.github.io/bleg/">
+        <img src="https://introt.github.io/bleg/images/profile.png" alt="introt bleg" title="introt bleg">
+      </a>
+
+      <h1>
+        <a href="https://introt.github.io/bleg/">introt bleg</a>
+      </h1>
+
+<p>stuff I care to share</p>
+
+      <nav>
+        <ul class="list">
+
+
+              <li>
+                <a target="_self"
+                   href="https://introt.github.io/bleg/pages/about.html#about">
+                  About
+                </a>
+              </li>
+
+            <li>
+              <a target="_self" href="https://github.com/introt/" >GitHub</a>
+            </li>
+            <li>
+              <a target="_self" href="https://introt.github.io/docs/" >Docs</a>
+            </li>
+            <li>
+              <a target="_self" href="https://github.com/introt/bleg/discussions" >Feedback</a>
+            </li>
+            <li>
+              <a target="_self" href="https://github.com/introt/bleg/issues" >Issues?</a>
+            </li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+      </ul>
+    </div>
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://introt.github.io/bleg/">Home</a>
+
+
+      <a href="https://introt.github.io/bleg/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://introt.github.io/bleg/feeds/all.rss">RSS</a>
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="baked-in-magic">Baked (in) Magic</h1>
+    <p>
+      Posted on Wed 20 April 2022 in <a href="https://introt.github.io/bleg/category/content.html">content</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Happy Weed Day!</p>
+<p>While waiting for <a href="https://www.youtube.com/druaga1">Druaga1</a>'s yearly
+celebratory video, I thought it'd be a good time to finally get my blog
+(high) off the ground, and get into the weeds with Alabester<sup>1</sup>.</p>
+<p>After bashing together a GitHub Actions pipeline<sup>2</sup> for
+the documentation site, I rediscovered the CSS issues
+I'd had manually fixed before<sup>3</sup>.
+Armed with an enterprice-grade build pipeline
+and having some time on my hands, I chose to follow my lofty ideals
+of fixing stuff for everyone, and decided to publish
+<a href="https://github.com/spookylukey/alabaster">spookylukey's fork</a> on PyPi
+to provide a fixed-up drop-in replacement for Alabaster. How hard could
+it be?</p>
+<h3>How Hard It Could Be</h3>
+<p>After a careful manual replication of what was essentially
+ <code>find -type f -execdir sed -i 's/labaster/labester/g' +</code>, it was time
+to bump the version and publish to PyPi. As everything seemed to be going
+well, I decided to dogfood the new package by <a href="https://github.com/introt/docs/commit/40b01eb3d184dd8fd47f5dc45e2e698614737f04">switching the docs site
+over</a>.
+A green tick appeared<sup>4</sup>, and I anxiously navigated to the
+site to check out the newest installment of <a href="https://introt.github.io/docs/#is-this-how-you-plug-your-stuff">introt docs</a> to
+find everything looking brand-spanking-new, as if <code>sphinx-quickstart</code>
+had only been ran moments prior...</p>
+<p>...which is not what was supposed to happen! I had spent a considerable
+amount of time on the <a href="https://github.com/introt/docs/blob/fc8760545cc12ae9ec3baa3d66963bc2d45b8ac9/sphinx/conf.py#L52-L57=">four perfect lines of <code>html_theme_options</code></a>,
+not to mention how long it took to perfect the "Consentrated knowledge"
+logo, expertly crafted using the finest combination of trial and error,
+so after banging my head against several metaphorical walls I decided to
+make the only logical decision: <em>dig in deeper</em>.</p>
+<h3>Examining the Evidence</h3>
+<p>Other than the theme options, everything seemed to work: my <a href="https://github.com/introt/docs/blob/fc8760545cc12ae9ec3baa3d66963bc2d45b8ac9/sphinx/conf.py#L21">creative
+Creative Commons hack</a>
+showed up in the footer along with the changed name and bumped version
+number indicating a successful installation, and there weren't any errors
+in either of the logs .. either.</p>
+<p>I could also confirm that the config options were being parsed - not that
+the theme would affect that - by importing the Sphinx <code>doctree</code> pickle:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pickle</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;_build/doctrees/environment.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">env</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_theme</span>
+<span class="s1">&#39;alabester&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_theme_options</span>
+<span class="p">{</span><span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;stop-gaps for documentation gaps&#39;</span><span class="p">,</span> <span class="s1">&#39;logo&#39;</span><span class="p">:</span> <span class="s1">&#39;logo.png&#39;</span><span class="p">,</span> <span class="s1">&#39;logo_name&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;logo_text_align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">}</span>
+</code></pre></div>
+
+<p><em>Don't ask me how I ended up adding a <code>custom.css</code> instead of fixing the logo text alignment...</em></p>
+<p>Comparing two non-compiled Python packages is simple enough:</p>
+<ol>
+<li>Pull the "Built" Distributions from PyPi</li>
+<li>Unpack the wheels - they're just renamed Zip archives</li>
+<li>Initialize a <code>git</code> repo in one, and commit all files</li>
+<li>Drag'n'drop the files from the other one on top using a gooey or whatever</li>
+<li>???</li>
+<li>Profit!</li>
+</ol>
+<p>In this case, step 5 was to undo the renaming - this time I could trust
+<code>sed</code> to do the right thing, as there wasn't a single instance of "labester"
+that shouldn't be changed.</p>
+<p>Besides some operating-system spesific line endings,
+forking-related link changes, and the actual fixes,
+nothing seemed to be out of place. I had suspected
+the tool versions to be the culprit, but other than
+the metadata version, they had no effect on the
+outcome - how could they, for there was nothing
+that <em>could</em> change?</p>
+<h3>Sphinx. In the Library. With the Match.</h3>
+<p><em>A murder with strings attached.</em></p>
+<p>During a cursory scroll through the upstream project's open PRs for any
+related fixes, I came across <a href="https://github.com/sphinx-doc/sphinx/pull/1759">Pull Request #1759</a>.
+It was then that it finally dawned on me that while Sphinx 4.5.x's requirement
+of a certain Alabaster version could very well be explained by the need to
+avoid unexpected visual changes during version upgrades, that same Alabaster
+version's dev requirements included <em>an upper limit for Sphinx in the 1.x range</em>!</p>
+<p>Having discovered the killer's motive, I soon uncovered the murder weapon:
+<em>a hard-coded string comparison</em>.</p>
+<div class="highlight"><pre><span></span><code>        <span class="c1"># default sidebars settings for selected theme</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">theme</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;alabaster&#39;</span><span class="p">:</span>
+            <span class="c1"># provide default settings for alabaster (for compatibility)</span>
+            <span class="c1"># Note: this will be removed before Sphinx-2.0</span>
+</code></pre></div>
+
+<p><em>There's nothing more permanent than a temporary fix.</em></p>
+<p>The jig was up.</p>
+<h3>Counter-Strike</h3>
+<p>To prove my theory beyond any reasonable doubt, I employed my not-so-secret
+weapon: <code>sed</code>. After installing my modifications and Alabester 4.2.0, I
+built my site once more, and lo and behold, it was back to looking like
+whatever it did look like before.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="n">pip</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">dependency</span><span class="w"> </span><span class="n">resolver</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">currently</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">packages</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">installed</span><span class="o">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">behaviour</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">dependency</span><span class="w"> </span><span class="n">conflicts</span><span class="o">.</span><span class="w"></span>
+<span class="n">sphinx</span><span class="w"> </span><span class="mf">4.5</span><span class="o">.</span><span class="mi">0</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">alabester</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="o">,&gt;=</span><span class="mf">0.7</span><span class="o">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">alabester</span><span class="w"> </span><span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">incompatible</span><span class="o">.</span><span class="w"></span>
+</code></pre></div>
+
+<p><em>Next fork: Sphenx?</em></p>
+<h3>Closing words</h3>
+<p>Sometimes you move fast, and discover things that are already broken.
+When bad things happen, don't default to blaming yourself; stay curious,
+keep exploring, and remember: the truth, is like, <em>out there</em>, man.</p>
+<p>Happy Hacking,</p>
+<p><em>intret</em></p>
+<hr>
+<h3>Footnotes</h3>
+<ol>
+<li><a href="https://github.com/introt/alabester">Alabester</a> is "like
+<a href="http://alabaster.readthedocs.io/">Alabaster</a>,
+but barely maintained instead of deprecated" (for now).
+Now <a href="https://pypi.org/project/alabester/#files">available on PyPi</a>!</li>
+<li><a href="https://github.com/introt/docs/commit/2f0ddec7e3483087a91e5613b6522124e463cefb">It's not pretty, but it gets the job done</a>.
+Debugging Actions is fun, as, short of replicating the setup locally,
+you can't really poke around in there.</li>
+<li><a href="https://github.com/introt/docs/issues?q=label%3Awebtech+is%3Aclosed">Webtech issues</a>
+include the need for a <code>.nojekyll</code> file when hosting on GitHub Pages.</li>
+<li>no, that's not a weed reference</li>
+</ol>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy; 2022 - This work is licensed under a <a href="https://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>. </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " introt bleg ",
+  "url" : "https://introt.github.io/bleg",
+  "image": "https://introt.github.io/bleg/images/profile.png",
+  "description": "stuff I care to share"
+}
+</script>
+
+</body>
+</html>

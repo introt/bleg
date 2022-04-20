@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>introt bleg - content</title><link href="https://introt.github.io/bleg/" rel="alternate"></link><link href="https://introt.github.io/bleg/feeds/content.atom.xml" rel="self"></link><id>https://introt.github.io/bleg/</id><updated>2022-04-20T04:20:00+03:00</updated><subtitle>stuff I care to share</subtitle><entry><title>Baked (in) Magic</title><link href="https://introt.github.io/bleg/baked-in-magic.html" rel="alternate"></link><published>2022-04-20T04:20:00+03:00</published><updated>2022-04-20T04:20:00+03:00</updated><author><name>introt</name></author><id>tag:introt.github.io,2022-04-20:/bleg/baked-in-magic.html</id><summary type="html">&lt;p&gt;Happy Weed Day!&lt;/p&gt;
+&lt;p&gt;While waiting for &lt;a href="https://www.youtube.com/druaga1"&gt;Druaga1&lt;/a&gt;'s yearly
+celebratory video, I thought it'd be a good time to finally get my blog
+(high) off the ground, and get into the weeds with Alabester&lt;sup&gt;1&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;After bashing together a GitHub Actions pipeline&lt;sup&gt;2&lt;/sup&gt; for
+the documentation site, I rediscovered the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Happy Weed Day!&lt;/p&gt;
+&lt;p&gt;While waiting for &lt;a href="https://www.youtube.com/druaga1"&gt;Druaga1&lt;/a&gt;'s yearly
+celebratory video, I thought it'd be a good time to finally get my blog
+(high) off the ground, and get into the weeds with Alabester&lt;sup&gt;1&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;After bashing together a GitHub Actions pipeline&lt;sup&gt;2&lt;/sup&gt; for
+the documentation site, I rediscovered the CSS issues
+I'd had manually fixed before&lt;sup&gt;3&lt;/sup&gt;.
+Armed with an enterprice-grade build pipeline
+and having some time on my hands, I chose to follow my lofty ideals
+of fixing stuff for everyone, and decided to publish
+&lt;a href="https://github.com/spookylukey/alabaster"&gt;spookylukey's fork&lt;/a&gt; on PyPi
+to provide a fixed-up drop-in replacement for Alabaster. How hard could
+it be?&lt;/p&gt;
+&lt;h3&gt;How Hard It Could Be&lt;/h3&gt;
+&lt;p&gt;After a careful manual replication of what was essentially
+ &lt;code&gt;find -type f -execdir sed -i 's/labaster/labester/g' +&lt;/code&gt;, it was time
+to bump the version and publish to PyPi. As everything seemed to be going
+well, I decided to dogfood the new package by &lt;a href="https://github.com/introt/docs/commit/40b01eb3d184dd8fd47f5dc45e2e698614737f04"&gt;switching the docs site
+over&lt;/a&gt;.
+A green tick appeared&lt;sup&gt;4&lt;/sup&gt;, and I anxiously navigated to the
+site to check out the newest installment of &lt;a href="https://introt.github.io/docs/#is-this-how-you-plug-your-stuff"&gt;introt docs&lt;/a&gt; to
+find everything looking brand-spanking-new, as if &lt;code&gt;sphinx-quickstart&lt;/code&gt;
+had only been ran moments prior...&lt;/p&gt;
+&lt;p&gt;...which is not what was supposed to happen! I had spent a considerable
+amount of time on the &lt;a href="https://github.com/introt/docs/blob/fc8760545cc12ae9ec3baa3d66963bc2d45b8ac9/sphinx/conf.py#L52-L57="&gt;four perfect lines of &lt;code&gt;html_theme_options&lt;/code&gt;&lt;/a&gt;,
+not to mention how long it took to perfect the "Consentrated knowledge"
+logo, expertly crafted using the finest combination of trial and error,
+so after banging my head against several metaphorical walls I decided to
+make the only logical decision: &lt;em&gt;dig in deeper&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;Examining the Evidence&lt;/h3&gt;
+&lt;p&gt;Other than the theme options, everything seemed to work: my &lt;a href="https://github.com/introt/docs/blob/fc8760545cc12ae9ec3baa3d66963bc2d45b8ac9/sphinx/conf.py#L21"&gt;creative
+Creative Commons hack&lt;/a&gt;
+showed up in the footer along with the changed name and bumped version
+number indicating a successful installation, and there weren't any errors
+in either of the logs .. either.&lt;/p&gt;
+&lt;p&gt;I could also confirm that the config options were being parsed - not that
+the theme would affect that - by importing the Sphinx &lt;code&gt;doctree&lt;/code&gt; pickle:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pickle&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;_build/doctrees/environment.pickle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;pickle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt; 
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html_theme&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;alabester&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html_theme_options&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;stop-gaps for documentation gaps&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;logo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;logo.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;logo_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;logo_text_align&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;center&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Don't ask me how I ended up adding a &lt;code&gt;custom.css&lt;/code&gt; instead of fixing the logo text alignment...&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Comparing two non-compiled Python packages is simple enough:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pull the "Built" Distributions from PyPi&lt;/li&gt;
+&lt;li&gt;Unpack the wheels - they're just renamed Zip archives&lt;/li&gt;
+&lt;li&gt;Initialize a &lt;code&gt;git&lt;/code&gt; repo in one, and commit all files&lt;/li&gt;
+&lt;li&gt;Drag'n'drop the files from the other one on top using a gooey or whatever&lt;/li&gt;
+&lt;li&gt;???&lt;/li&gt;
+&lt;li&gt;Profit!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In this case, step 5 was to undo the renaming - this time I could trust
+&lt;code&gt;sed&lt;/code&gt; to do the right thing, as there wasn't a single instance of "labester"
+that shouldn't be changed.&lt;/p&gt;
+&lt;p&gt;Besides some operating-system spesific line endings,
+forking-related link changes, and the actual fixes,
+nothing seemed to be out of place. I had suspected
+the tool versions to be the culprit, but other than
+the metadata version, they had no effect on the
+outcome - how could they, for there was nothing
+that &lt;em&gt;could&lt;/em&gt; change?&lt;/p&gt;
+&lt;h3&gt;Sphinx. In the Library. With the Match.&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;A murder with strings attached.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;During a cursory scroll through the upstream project's open PRs for any
+related fixes, I came across &lt;a href="https://github.com/sphinx-doc/sphinx/pull/1759"&gt;Pull Request #1759&lt;/a&gt;.
+It was then that it finally dawned on me that while Sphinx 4.5.x's requirement
+of a certain Alabaster version could very well be explained by the need to
+avoid unexpected visual changes during version upgrades, that same Alabaster
+version's dev requirements included &lt;em&gt;an upper limit for Sphinx in the 1.x range&lt;/em&gt;!&lt;/p&gt;
+&lt;p&gt;Having discovered the killer's motive, I soon uncovered the murder weapon:
+&lt;em&gt;a hard-coded string comparison&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;        &lt;span class="c1"&gt;# default sidebars settings for selected theme&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;alabaster&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="c1"&gt;# provide default settings for alabaster (for compatibility)&lt;/span&gt;
+            &lt;span class="c1"&gt;# Note: this will be removed before Sphinx-2.0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;There's nothing more permanent than a temporary fix.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The jig was up.&lt;/p&gt;
+&lt;h3&gt;Counter-Strike&lt;/h3&gt;
+&lt;p&gt;To prove my theory beyond any reasonable doubt, I employed my not-so-secret
+weapon: &lt;code&gt;sed&lt;/code&gt;. After installing my modifications and Alabester 4.2.0, I
+built my site once more, and lo and behold, it was back to looking like
+whatever it did look like before.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ERROR&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dependency&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;resolver&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;does&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;currently&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;take&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;into&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;account&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;installed&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;behaviour&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;following&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dependency&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;conflicts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4.5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;requires&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;alabester&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="o"&gt;,&amp;gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.7&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;but&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;have&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;alabester&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4.2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;which&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;incompatible&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Next fork: Sphenx?&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Closing words&lt;/h3&gt;
+&lt;p&gt;Sometimes you move fast, and discover things that are already broken.
+When bad things happen, don't default to blaming yourself; stay curious,
+keep exploring, and remember: the truth, is like, &lt;em&gt;out there&lt;/em&gt;, man.&lt;/p&gt;
+&lt;p&gt;Happy Hacking,&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;intret&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;Footnotes&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/introt/alabester"&gt;Alabester&lt;/a&gt; is "like
+&lt;a href="http://alabaster.readthedocs.io/"&gt;Alabaster&lt;/a&gt;,
+but barely maintained instead of deprecated" (for now).
+Now &lt;a href="https://pypi.org/project/alabester/#files"&gt;available on PyPi&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/introt/docs/commit/2f0ddec7e3483087a91e5613b6522124e463cefb"&gt;It's not pretty, but it gets the job done&lt;/a&gt;.
+Debugging Actions is fun, as, short of replicating the setup locally,
+you can't really poke around in there.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/introt/docs/issues?q=label%3Awebtech+is%3Aclosed"&gt;Webtech issues&lt;/a&gt;
+include the need for a &lt;code&gt;.nojekyll&lt;/code&gt; file when hosting on GitHub Pages.&lt;/li&gt;
+&lt;li&gt;no, that's not a weed reference&lt;/li&gt;
+&lt;/ol&gt;</content><category term="content"></category></entry><entry><title>Hello, World!</title><link href="https://introt.github.io/bleg/hello-world.html" rel="alternate"></link><published>2021-01-21T21:01:00+02:00</published><updated>2022-04-20T04:20:00+03:00</updated><author><name>introt</name></author><id>tag:introt.github.io,2021-01-21:/bleg/hello-world.html</id><summary type="html">&lt;p&gt;The story so far: I've been able to successfully configure Pelican&lt;sup&gt;1&lt;/sup&gt; and resist quoting Douglas Adams&lt;sup&gt;2&lt;/sup&gt;. Now, onto the easy part: content creation!&lt;/p&gt;
+&lt;p&gt;I've tried blogging in the past, but my attempts have succumbed to lack of content. I'm not really into sharing my life with strangers and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The story so far: I've been able to successfully configure Pelican&lt;sup&gt;1&lt;/sup&gt; and resist quoting Douglas Adams&lt;sup&gt;2&lt;/sup&gt;. Now, onto the easy part: content creation!&lt;/p&gt;
+&lt;p&gt;I've tried blogging in the past, but my attempts have succumbed to lack of content. I'm not really into sharing my life with strangers and my hobby projects have been nothing to write home(pages) about. However, as of late I've gotten into&lt;sup&gt;3&lt;/sup&gt; some things that may be of interest to others, ranging from ... to ... &lt;em&gt;[the blog never materialized, so I'll leave you all hanging till it does - sorry!]&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Due to my busy schedule (and unhealthy amount of perfectionism) I'm going for a very spesific ratio of quality and quantity: only and always posting when I come {across,up with} something that can be best described as "not ROT&lt;sup&gt;4&lt;/sup&gt;":&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Not Redundant: if there's a satisfactory existing solution online or the information belongs to an existing documentation site or wiki, it's not postworthy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Not Outdated: if I for any reason can't make sure the subject matter still matters, it should be visible at the top of the post. Missing links suck so deleting posts isn't the way to go. I will also be sure to archieve my sources in case they go offline.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Not Trivial: a pretty subjective yet self-explanatory quality. Many trivial details may accumulate into a blog post.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To maximize yield I'm not going to limit myself to blog posts; small or messy ideas can start their life as ... which may, as time passes, form larger units or grow into new projects and blog posts. I'm also going to take the opportunity to experiment with different tools, styles and media.&lt;/p&gt;
+&lt;p&gt;I have a dual goal for the &lt;em&gt;introt&lt;/em&gt; project: sharing learnings and learning sharing. Welcome to my corner of the internet!&lt;/p&gt;
+&lt;h3&gt;Footnotes&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://blog.getpelican.com/"&gt;Pelican&lt;/a&gt; is a &lt;a href="https://en.wikipedia.org/wiki/Static_site_generator"&gt;static site generator&lt;/a&gt; powered by &lt;a href="https://en.wikipedia.org/wiki/Python_(programming_language)"&gt;Python&lt;/a&gt; ie. the software that makes the pretty pages you're looking at.&lt;/li&gt;
+&lt;li&gt;Author of &lt;a href="https://en.wikipedia.org/wiki/thhgttg"&gt;the Hitchhiker's Guide to the Galaxy&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Pun intended.&lt;/li&gt;
+&lt;li&gt;This is my interpretation of the words that make up the acronym, I'm not going to bother too much with &lt;a href="https://en.wikipedia.org/wiki/Search_engine_optimization"&gt;SEO&lt;/a&gt; stuff.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="content"></category></entry></feed>
